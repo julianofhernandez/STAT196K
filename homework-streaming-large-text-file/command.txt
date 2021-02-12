@@ -1,0 +1,1 @@
+time aws s3 cp s3://stat196k-data-examples/2018.csv.gz - --no-sign-request | gunzip | cut --fields 31 > goldsteinScores.txt

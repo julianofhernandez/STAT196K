@@ -1,0 +1,15 @@
+ws s3 cp s3://stat196k-data-examples/20190203.csv - | head -n 100 > first100rows.csv
+
+sftp -i "julian-2-5-2021.pem" ec2-user@ec2-100-26-237-70.compute-1.amazonaws.com
+
+get first100rows.csv
+
+# I used this one originally but went back to add some of the processing that I was doing in python to the piped command
+time (aws s3 cp s3://stat196k-data-examples/2018.csv.gz - --no-sign-request | gunzip | cut --fields 31 > goldsteinScores.txt) 
+
+# This is the revised command that creates a file with just a few lines for bins
+time (aws s3 cp s3://stat196k-data-examples/2018.csv.gz - --no-sign-request | gunzip | cut --fields 31 | sed "s/\.\S*//" | sort | uniq --count > goldsteinScores.txt) &
+
+top
+
+

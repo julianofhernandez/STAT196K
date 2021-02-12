@@ -1,0 +1,41 @@
+import sys
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+
+bins = range(-10,11)
+goldsteinScores = {}
+counter = 0
+
+for line in sys.stdin:
+    line = line[0:-1]
+    try:
+        integer = int(round(float(line)))
+    except:
+        continue
+    try:
+        goldsteinScores[integer] += 1
+    except:
+        goldsteinScores[integer] = 1
+    counter += 1
+
+plotData = {}
+for i in range(-10,11):
+    try:
+        plotData[i] = goldsteinScores[i]
+    except:
+        plotData[i] = 0
+        print(i)
+    
+
+
+#plt.hist(plotData, bins=bins)
+plt.bar(range(len(plotData)), list(plotData.values()), align='center')
+plt.ylabel('Probability')
+plt.xlabel('Goldstein Scores')
+plt.xticks(range(len(plotData)), list(plotData.keys()))
+plt.title("Total lines processed: " + str(counter))
+plt.savefig('image.png')
+plt.close()

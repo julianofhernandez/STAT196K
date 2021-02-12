@@ -1,0 +1,7 @@
+# 1.
+grep ^D presidents.csv
+# 2.
+# Pipes can handle binary data however it cannot be written to the terminal
+cat presidents.csv | gzip -c > zipped-data
+# 3.
+cat presidents.csv | sed s/^D/DEM/| sed s/^R/REP/

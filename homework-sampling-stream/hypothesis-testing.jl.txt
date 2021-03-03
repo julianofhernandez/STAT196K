@@ -1,0 +1,16 @@
+using Distributions
+using StatsPlots
+
+input = readlines()
+sizeSeq = 1000000
+
+inputParsed = Array{Int64,1}(undef, size(input)[1])
+for i in eachindex(input)
+	inputParsed[i] = parse(Int64, input[i])
+end
+U100 = Uniform(1,sizeSeq)
+
+fig = qqplot(inputParsed, U100)
+savefig(fig, "outputPlot.png")
+
+

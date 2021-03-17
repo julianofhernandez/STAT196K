@@ -19,10 +19,10 @@ function getData(files)
         description = getDescription(file)
         totalWorkers = getTotalWorkers(file)
         if description == ""
-            println(file + " description not processed")
+            println(file * " description not processed")
             filesNotProcessed+=1
-        else if totalWorkers < 0
-            println(file + " workers not processed not processed")
+        elseif totalWorkers < 0
+            println(file * " workers not processed not processed")
             filesNotProcessed+=1
         else
             push!(descriptions, description)
@@ -91,5 +91,5 @@ function getDocumentTermMatrix(descriptions)
 end
 
 files = getFiles(dataDir)
-descriptions = getDescriptions(files)
+descriptions = getData(files)
 getDocumentTermMatrix(descriptions)

@@ -2,7 +2,7 @@ using EzXML
 using TextAnalysis
 
 # Global variables
-dataDir = "ignore_2019"
+dataDir = "ignore_data"
 
 
 function getFiles(dataDir)
@@ -29,9 +29,9 @@ function getData(files)
         end
     end
     #! Need to print int correctly
-    println(filesNotProcessed * " out of " * filesProcessed * " were not processed")
+    println(string(filesNotProcessed) * " out of " * string(filesProcessed) * " were not processed")
     open("myfile.txt", "w") do io
-        write(io, filesNotProcessed * " out of " * filesProcessed * " were not processed")
+        write(io, string(filesNotProcessed) * " out of " * string(filesProcessed) * " were not processed")
     end
     return descriptions
 end
@@ -95,7 +95,7 @@ function getDocumentTermMatrix(descriptions)
     return dtm
 end
 
-files = getFiles(dataDir)
-descriptions = getData(files)
-matrix = getDocumentTermMatrix(descriptions)
+@time files = getFiles(dataDir)
+@time descriptions = getData(files)
+@time matrix = getDocumentTermMatrix(descriptions)
 matrix

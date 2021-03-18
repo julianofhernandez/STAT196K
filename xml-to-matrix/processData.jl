@@ -2,7 +2,7 @@ using EzXML
 using TextAnalysis
 
 # Global variables
-dataDir = "ignore_data"
+dataDir = "2019"
 
 
 function getFiles(dataDir)

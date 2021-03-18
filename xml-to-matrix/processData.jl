@@ -2,7 +2,7 @@ using EzXML
 using TextAnalysis
 
 # Global variables
-dataDir = "2019"
+dataDir = "ignore_data"
 
 
 function getFiles(dataDir)
@@ -18,6 +18,7 @@ function getData(files)
         # description
         description = getDescription(file)
         totalWorkers = getTotalWorkers(file)
+        println(totalWorkers)
         if description == ""
             println(file * " description not processed")
             filesNotProcessed+=1
@@ -92,10 +93,12 @@ function getDocumentTermMatrix(descriptions)
     d = DocumentTermMatrix(c)
     dtm(d)
     dtm(d, :dense)
-    return dtm
+    return d
 end
 
 @time files = getFiles(dataDir)
 @time descriptions = getData(files)
 @time matrix = getDocumentTermMatrix(descriptions)
-matrix
+println(matrix.terms)
+println("Length of DTM")
+println(size(matrix.terms))

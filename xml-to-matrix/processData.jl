@@ -28,7 +28,11 @@ function getData(files)
             push!(descriptions, description)
         end
     end
+    #! Need to print int correctly
     println(filesNotProcessed * " out of " * filesProcessed * " were not processed")
+    open("myfile.txt", "w") do io
+        write(io, filesNotProcessed * " out of " * filesProcessed * " were not processed")
+    end
     return descriptions
 end
 
@@ -88,8 +92,10 @@ function getDocumentTermMatrix(descriptions)
     d = DocumentTermMatrix(c)
     dtm(d)
     dtm(d, :dense)
+    return dtm
 end
 
 files = getFiles(dataDir)
 descriptions = getData(files)
-getDocumentTermMatrix(descriptions)
+matrix = getDocumentTermMatrix(descriptions)
+matrix

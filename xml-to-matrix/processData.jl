@@ -18,12 +18,12 @@ function getData(files)
         # description
         description = getDescription(file)
         totalWorkers = getTotalWorkers(file)
-        println(totalWorkers)
+        # println(totalWorkers)
         if description == ""
-            println(file * " description not processed")
+            # println(file * " description not processed")
             filesNotProcessed+=1
         elseif totalWorkers < 0
-            println(file * " workers not processed not processed")
+            # println(file * " workers not processed not processed")
             filesNotProcessed+=1
         else
             push!(descriptions, description)

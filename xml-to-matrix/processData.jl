@@ -34,6 +34,7 @@ function getData(files)
     println(string(filesNotProcessed) * " out of " * string(filesProcessed) * " were not processed")
     open("myfile.txt", "a") do io
         write(io, string(filesNotProcessed) * " out of " * string(filesProcessed) * " were not processed")
+        write(io, "\n")
     end
     return descriptions
 end
@@ -46,7 +47,7 @@ function getDescription(file)
     if isnothing(missionDesc)
         missionDesc = findfirst("//PrimaryExemptPurposeTxt", rootElement)
     end
-
+    
     if isnothing(missionDesc)
         return ""
     else
@@ -61,7 +62,7 @@ function getTotalWorkers(file)
     totalEmployees = findfirst("//EmployeeCnt", rootElement)
     # Get volunteers
     totalVolunteers = findfirst("//TotalVolunteersCnt", rootElement)
-
+    
     if isnothing(totalEmployees) & isnothing(totalVolunteers)
         return -1
     elseif isnothing(totalVolunteers)
@@ -90,23 +91,23 @@ function getDocumentTermMatrix(descriptions)
     prepare!(c, strip_punctuation)
     stem!(c)
     update_lexicon!(c)
-
+    
     d = DocumentTermMatrix(c)
-    dtm(d)
-    dtm(d, :parse)
-    return d
+    # dtm(d, :sparse)
+    return d.dtm
 end
 
 open("myfile.txt", "a") do io
     write(io, Dates.format(now(), "HH:MM"))
+    write(io, "\n")
 end
 @time files = getFiles(dataDir)
 @time descriptions = getData(files)
 @time matrix = getDocumentTermMatrix(descriptions)
-println(matrix.terms)
 println("Length of DTM")
-println(size(matrix.terms))
+println(size(matrix))
 open("myfile.txt", "a") do io
-    write(io, string(size(matrix.terms)))
+    write(io, string(size(matrix)))
     write(io, Dates.format(now(), "HH:MM"))
+    write(io, "\n")
 end

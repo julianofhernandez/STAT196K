@@ -3,7 +3,7 @@ using TextAnalysis
 using Dates
 
 # Global variables
-dataDir = "ignore_data"
+dataDir = "2019"
 
 
 function getFiles(dataDir)
@@ -93,7 +93,7 @@ function getDocumentTermMatrix(descriptions)
 
     d = DocumentTermMatrix(c)
     dtm(d)
-    dtm(d, :dense)
+    dtm(d, :parse)
     return d
 end
 

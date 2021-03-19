@@ -1,6 +1,7 @@
 using EzXML
 using TextAnalysis
 using Dates
+using Serialization
 
 # Global variables
 dataDir = "2019"
@@ -93,8 +94,7 @@ function getDocumentTermMatrix(descriptions)
     update_lexicon!(c)
     
     d = DocumentTermMatrix(c)
-    # dtm(d, :sparse)
-    return d.dtm
+    serialize("data", d)
 end
 
 open("myfile.txt", "a") do io
@@ -103,11 +103,10 @@ open("myfile.txt", "a") do io
 end
 @time files = getFiles(dataDir)
 @time descriptions = getData(files)
-@time matrix = getDocumentTermMatrix(descriptions)
-println("Length of DTM")
-println(size(matrix))
+@time getDocumentTermMatrix(descriptions)
+
+
 open("myfile.txt", "a") do io
-    write(io, string(size(matrix)))
     write(io, Dates.format(now(), "HH:MM"))
     write(io, "\n")
 end

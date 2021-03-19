@@ -1,5 +1,6 @@
 using EzXML
 using TextAnalysis
+using Dates
 
 # Global variables
 dataDir = "ignore_data"
@@ -31,7 +32,7 @@ function getData(files)
     end
     #! Need to print int correctly
     println(string(filesNotProcessed) * " out of " * string(filesProcessed) * " were not processed")
-    open("myfile.txt", "w") do io
+    open("myfile.txt", "a") do io
         write(io, string(filesNotProcessed) * " out of " * string(filesProcessed) * " were not processed")
     end
     return descriptions
@@ -96,9 +97,16 @@ function getDocumentTermMatrix(descriptions)
     return d
 end
 
+open("myfile.txt", "a") do io
+    write(io, Dates.format(now(), "HH:MM"))
+end
 @time files = getFiles(dataDir)
 @time descriptions = getData(files)
 @time matrix = getDocumentTermMatrix(descriptions)
 println(matrix.terms)
 println("Length of DTM")
 println(size(matrix.terms))
+open("myfile.txt", "a") do io
+    write(io, string(size(matrix.terms)))
+    write(io, Dates.format(now(), "HH:MM"))
+end

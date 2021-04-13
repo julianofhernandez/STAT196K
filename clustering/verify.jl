@@ -6,7 +6,7 @@ irs990 = Serialization.deserialize("irs990extract.jldata")
 
 index = 3131
 
-d1 = StringDocument(irs990[index]["mission"])
+sd = StringDocument(irs990[index]["mission"])
 c = Corpus([sd])
 remove_case!(c)
 prepare!(c, strip_punctuation)

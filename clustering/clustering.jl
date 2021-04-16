@@ -21,7 +21,7 @@ function termsThatAppearXTimes(termfreq, x)
     return termAppearances
 end
 
-print("Total number terms that appear once is: " * string(termsThatAppearXTimes(termfreq, 1)))
+println("Total number terms that appear once is: " * string(termsThatAppearXTimes(termfreq, 1)))
 
 # Question 2
 function howManyTermsAppear(termfreq, moreThanX)
@@ -35,7 +35,7 @@ function howManyTermsAppear(termfreq, moreThanX)
     return totalTerms
 end
 
-print("There are " * string(howManyTermsAppear(termfreq, 5)) * " terms that appear more than five times")
+println("There are " * string(howManyTermsAppear(termfreq, 5)) * " terms that appear more than five times")
 
 # Question 3
 function termFrequencyMeasure(termfreq, termIndex)
@@ -64,7 +64,7 @@ function mostCommonTerms(termfreq, topX)
         # put it into our high values
         topXTerms[j] = mostFreq
         # Set the winning value to zero
-        termFreqTemp[:,mostFreq] .= 0
+        termfreqTemp[:,mostFreq] .= 0
     end
     return topXTerms
 end
@@ -85,7 +85,7 @@ end
 
 sacramentoIndex = lookupTerm(terms, "sacramento")
 sacDocs = size(termfreq[:, sacramentoIndex].nzind,1)
-print("'Sacramento' shows up in " * string(sacDocs) * " documents")
+println("'Sacramento' shows up in " * string(sacDocs) * " documents")
 
 # Question 5
 sacramentoIndex = lookupTerm(terms, "sacramento")
@@ -154,7 +154,6 @@ largest = maxCompany(subset)
 largestCompany = irs990[1]
 for company in irs990
     if parse(Int64, company["revenue"]) == largest
-        print("largest")
         largestCompany = company
     end
 end

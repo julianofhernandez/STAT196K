@@ -188,7 +188,7 @@ termfreqsubset = collect(termfreqsubset)
 # Transform the data
 termfreqsubset_trans = transpose(termfreqsubset)
 # Create PCA1
-pca1 = fit(PCA, termfreqsubset, maxoutdim = 10)
+pca1 = fit(PCA, termfreqsubset_trans, maxoutdim = 10)
 
 # Question 2
 

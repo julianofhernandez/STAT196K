@@ -217,7 +217,7 @@ terms[termfreqsubsetIndicies[termIndicies]]
 # Section 4
 # Question 1
 clusteringMatrix = transform(pca1,termfreqsubset_trans)
-k2 = Clustering.kmeans(clusteringMatrix, 2)
+k2 = Clustering.kmeans(clusteringMatrix, 3)
 grp1 = k2.assignments .== 1
 grp2 = k2.assignments .== 2
 grp3 = k2.assignments .== 3

@@ -174,10 +174,22 @@ function removeTermsThatAppearLessThanX(termfreqtemp, lessThanX)
             push!(keepTerms,i)
         end
     end
+    # return keepTerms
+    return termfreqtemp[1:end, keepTerms]
+end
+function removeTermsThatAppearLessThanXIndex(termfreqtemp, lessThanX)
+    keepTerms = []
+    matrixSize = size(termfreqtemp,2)
+    for i in 1:size(termfreqtemp,2)
+        term = termfreqtemp[:, i]
+        if size(term.nzval,1) >= 2
+            push!(keepTerms,i)
+        end
+    end
     return keepTerms
-    # return termfreqtemp[1:end, keepTerms]
 end
 
+termfreqsubsetIndicies = removeTermsThatAppearLessThanXIndex(termfreqsubset, 2)
 termfreqsubset = removeTermsThatAppearLessThanX(termfreqsubset, 2)
 println("I found " * string(size(termfreqsubset,2)) * " words with 2 or more occurrences")
 
@@ -200,7 +212,7 @@ absProj = abs.(proj)
 firstPCProj = absProj[1:end, 1]
 termIndicies = sortperm(firstPCProj)
 # Most used words
-terms[termfreqsubset[termIndicies]]
+terms[termfreqsubsetIndicies[termIndicies]]
 
 # Section 4
 # Question 1

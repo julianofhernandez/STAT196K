@@ -70,7 +70,7 @@ function mostCommonTerms(termfreq, topX)
 end
 topTerms = mostCommonTerms(termfreq, 20)
 # print the top terms
-for term in x
+for term in topTerms
     println(terms[term])
 end
 

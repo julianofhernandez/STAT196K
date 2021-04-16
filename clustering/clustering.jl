@@ -150,7 +150,7 @@ function maxCompany(companyList)
 end
 
 subset = findTopXCompanies(irs990, 10000)
-largest = maxCompany(subset)
+largest = maxCompany(subset[1])
 largestCompany = irs990[1]
 for company in irs990
     if parse(Int64, company["revenue"]) == largest

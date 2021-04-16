@@ -150,13 +150,17 @@ function maxCompany(companyList)
 end
 
 subset = findTopXCompanies(irs990, 10000)
-largest = maxCompany(subset[1])
-largestCompany = irs990[1]
-for company in irs990
-    if parse(Int64, company["revenue"]) == largest
-        largestCompany = company
+function findLargestCompany(irs990temp)
+    largest = maxCompany(irs990temp)
+    largestCompany = irs990temp[1]
+    for company in irs990temp
+        if parse(Int64, company["revenue"]) == largest
+            largestCompany = company
+        end
     end
+    return largestCompany
 end
+println("largest company is " * string(findLargestCompany(irs990)["name"]))
 
 # Question 3
 termfreq = Serialization.deserialize("termfreq.jldata")

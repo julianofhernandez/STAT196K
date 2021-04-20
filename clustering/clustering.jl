@@ -249,3 +249,7 @@ closestFilings = irs990[subset[2][cc]]
 group1 = irs990[subset[2][grp1]]
 group2 = irs990[subset[2][grp2]]
 group3 = irs990[subset[2][grp3]]
+
+println(group1)
+println(group2)
+println(group3)

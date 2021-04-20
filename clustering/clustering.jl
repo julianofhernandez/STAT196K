@@ -251,3 +251,9 @@ group2 = irs990[subset[2][grp2]]
 group3 = irs990[subset[2][grp3]]
 
 println(closestFilings)
+println("Group1")
+println(group1[1:5])
+println("Group2")
+println(group2[1:5])
+println("Group3")
+println(group3[1:5])
